@@ -6,26 +6,26 @@
 
 @layer base {
   :root {
-    /* Pixel art retro color palette - Pink Theme */
-    --background: 330 25% 96%;
-    --foreground: 240 10% 9%;
-    --card: 330 30% 94%;
-    --card-foreground: 240 10% 9%;
-    --popover: 330 30% 94%;
-    --popover-foreground: 240 10% 9%;
-    --primary: 320 60% 75%;
+    /* Enhanced Retro Pixel Color Palette - Synthwave/Vaporwave Theme */
+    --background: 315 40% 92%;
+    --foreground: 260 30% 15%;
+    --card: 320 50% 90%;
+    --card-foreground: 260 30% 15%;
+    --popover: 320 50% 90%;
+    --popover-foreground: 260 30% 15%;
+    --primary: 320 80% 65%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 300 40% 85%;
-    --secondary-foreground: 240 10% 9%;
-    --muted: 300 20% 88%;
-    --muted-foreground: 240 5% 35%;
-    --accent: 290 50% 80%;
-    --accent-foreground: 240 10% 9%;
-    --destructive: 0 70% 60%;
+    --secondary: 280 60% 75%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 300 30% 85%;
+    --muted-foreground: 260 20% 40%;
+    --accent: 200 100% 80%;
+    --accent-foreground: 260 30% 15%;
+    --destructive: 0 80% 65%;
     --destructive-foreground: 0 0% 100%;
-    --border: 320 30% 80%;
-    --input: 320 30% 85%;
-    --ring: 320 60% 75%;
+    --border: 320 40% 70%;
+    --input: 320 40% 82%;
+    --ring: 320 80% 65%;
     --radius: 0rem; /* Remove border radius for pixel style */
 
     /* Pixel window colors */
@@ -41,12 +41,14 @@
     --button-border-light: 320 80% 85%;
     --button-border-dark: 320 40% 55%;
 
-    /* Custom kindness colors - Pixel theme */
-    --kindness-primary: 320 60% 75%;
-    --kindness-secondary: 300 40% 85%;
-    --kindness-accent: 290 50% 80%;
-    --kindness-warm: 350 60% 80%;
-    --kindness-cool: 280 40% 80%;
+    /* Enhanced retro kindness colors - Synthwave theme */
+    --kindness-primary: 320 80% 65%;
+    --kindness-secondary: 280 60% 75%;
+    --kindness-accent: 200 100% 80%;
+    --kindness-warm: 330 90% 70%;
+    --kindness-cool: 190 80% 75%;
+    --kindness-electric: 290 100% 75%;
+    --kindness-neon: 160 100% 65%;
 
     /* Point glow animation */
     --glow-color: 320 60% 75%;
@@ -126,9 +128,21 @@
   body {
     @apply bg-background text-foreground min-h-screen;
     font-family: 'Press Start 2P', cursive;
-    background-image: 
-      radial-gradient(circle at 25% 25%, hsl(var(--kindness-primary) / 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, hsl(var(--kindness-accent) / 0.1) 0%, transparent 50%);
+    background: 
+      linear-gradient(45deg, 
+        hsl(var(--kindness-primary) / 0.05) 0%, 
+        hsl(var(--kindness-secondary) / 0.05) 25%,
+        hsl(var(--kindness-accent) / 0.08) 50%,
+        hsl(var(--kindness-electric) / 0.06) 75%,
+        hsl(var(--kindness-neon) / 0.04) 100%
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 2px,
+        hsl(var(--kindness-primary) / 0.02) 2px,
+        hsl(var(--kindness-primary) / 0.02) 4px
+      );
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
@@ -144,17 +158,23 @@
     border-image: none;
     image-rendering: pixelated;
     box-shadow: 
-      inset 2px 2px 0px hsl(var(--button-border-light)),
-      inset -2px -2px 0px hsl(var(--button-border-dark)),
-      4px 4px 0px hsl(var(--window-border) / 0.3);
+      inset 3px 3px 0px hsl(var(--kindness-accent) / 0.8),
+      inset -3px -3px 0px hsl(var(--kindness-electric) / 0.6),
+      6px 6px 0px hsl(var(--window-border) / 0.4),
+      0 0 20px hsl(var(--kindness-primary) / 0.3);
   }
 
   .pixel-window-titlebar {
-    @apply h-8 bg-window-titlebar border-b-4 border-window-border flex items-center px-2 relative;
+    @apply h-10 border-b-4 border-window-border flex items-center px-3 relative;
     background: linear-gradient(90deg, 
-      hsl(var(--window-titlebar)) 0%, 
-      hsl(var(--window-active)) 50%, 
-      hsl(var(--window-titlebar)) 100%);
+      hsl(var(--kindness-primary)) 0%, 
+      hsl(var(--kindness-electric)) 30%,
+      hsl(var(--kindness-accent)) 50%,
+      hsl(var(--kindness-electric)) 70%,
+      hsl(var(--kindness-primary)) 100%);
+    box-shadow: 
+      inset 0 2px 0px hsl(var(--kindness-neon) / 0.6),
+      inset 0 -2px 0px hsl(var(--kindness-electric) / 0.8);
   }
 
   .pixel-window-content {
@@ -251,11 +271,16 @@
     @apply h-full transition-all duration-500 ease-out;
     background: linear-gradient(90deg, 
       hsl(var(--kindness-primary)) 0%, 
-      hsl(var(--kindness-warm)) 50%, 
+      hsl(var(--kindness-electric)) 25%,
+      hsl(var(--kindness-neon)) 50%, 
+      hsl(var(--kindness-electric)) 75%,
       hsl(var(--kindness-primary)) 100%);
-    background-size: 20px 100%;
+    background-size: 16px 100%;
     background-repeat: repeat-x;
-    animation: pixel-progress-animate 1s linear infinite;
+    animation: pixel-progress-animate 0.8s linear infinite;
+    box-shadow: 
+      inset 0 1px 0px hsl(var(--kindness-accent) / 0.8),
+      0 0 8px hsl(var(--kindness-primary) / 0.6);
   }
 
   /* Text styling for pixel theme */

@@ -76,7 +76,9 @@ export default {
 				'kindness-secondary': 'hsl(var(--kindness-secondary))',
 				'kindness-accent': 'hsl(var(--kindness-accent))',
 				'kindness-warm': 'hsl(var(--kindness-warm))',
-				'kindness-cool': 'hsl(var(--kindness-cool))'
+				'kindness-cool': 'hsl(var(--kindness-cool))',
+				'kindness-electric': 'hsl(var(--kindness-electric))',
+				'kindness-neon': 'hsl(var(--kindness-neon))'
 			},
 			fontFamily: {
 				'pixel': ['Press Start 2P', 'cursive'],
