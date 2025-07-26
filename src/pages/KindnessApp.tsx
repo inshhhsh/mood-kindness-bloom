@@ -3,6 +3,7 @@ import { MoodSelector } from '@/components/MoodSelector';
 import { TaskList } from '@/components/TaskList';
 import { ReflectionForm } from '@/components/ReflectionForm';
 import { ProgressPage } from '@/components/ProgressPage';
+import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { useKindnessApp, Mood } from '@/hooks/useKindnessApp';
 import { useAuth } from '@/hooks/useAuth';
 import AuthPage from './AuthPage';
@@ -98,17 +99,20 @@ export default function KindnessApp() {
     return <AuthPage />;
   }
 
-  // Add logout button to mood selector
-  const MoodSelectorWithLogout = () => (
+  // Add controls to mood selector
+  const MoodSelectorWithControls = () => (
     <div className="relative">
-      <Button
-        variant="ghost"
-        onClick={signOut}
-        className="absolute top-4 right-4 z-10"
-      >
-        <LogOut className="w-4 h-4 mr-2" />
-        Sign Out
-      </Button>
+      <div className="absolute top-4 right-4 z-10 flex gap-2">
+        <ThemeSwitcher />
+        <Button
+          variant="ghost"
+          onClick={signOut}
+          className="pixel-button text-xs"
+        >
+          <LogOut className="w-3 h-3 mr-1" />
+          Sign Out
+        </Button>
+      </div>
       <MoodSelector onMoodSelect={handleMoodSelect} />
     </div>
   );
@@ -116,7 +120,7 @@ export default function KindnessApp() {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'mood':
-        return <MoodSelectorWithLogout />;
+        return <MoodSelectorWithControls />;
       
       case 'tasks':
         return (
@@ -156,7 +160,7 @@ export default function KindnessApp() {
         );
       
       default:
-        return <MoodSelectorWithLogout />;
+        return <MoodSelectorWithControls />;
     }
   };
 
