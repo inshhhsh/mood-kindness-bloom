@@ -8,89 +8,86 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Pastel color scheme for kindness app */
+    --background: 325 50% 98%;
+    --foreground: 240 10% 20%;
+    --card: 320 30% 96%;
+    --card-foreground: 240 10% 20%;
+    --popover: 320 30% 96%;
+    --popover-foreground: 240 10% 20%;
+    --primary: 340 65% 75%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 280 25% 85%;
+    --secondary-foreground: 240 10% 20%;
+    --muted: 300 20% 90%;
+    --muted-foreground: 240 5% 45%;
+    --accent: 200 30% 85%;
+    --accent-foreground: 240 10% 20%;
+    --destructive: 350 65% 75%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 320 25% 88%;
+    --input: 320 25% 88%;
+    --ring: 340 65% 75%;
+    --radius: 1rem;
+    
+    /* Custom kindness colors */
+    --kindness-bg: 325 50% 98%;
+    --kindness-soft-green: 140 30% 75%;
+    --kindness-soft-red: 350 25% 80%;
+    --kindness-warm: 45 60% 85%;
+    --kindness-cool: 200 30% 85%;
+    --kindness-gentle: 280 25% 85%;
+    
+    /* Point glow animation */
+    --glow-color: 45 100% 70%;
+    
+    --sidebar-background: 325 40% 96%;
+    --sidebar-foreground: 240 10% 20%;
+    --sidebar-primary: 340 65% 75%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 320 25% 88%;
+    --sidebar-accent-foreground: 240 10% 20%;
+    --sidebar-border: 320 25% 88%;
+    --sidebar-ring: 340 65% 75%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 240 10% 8%;
+    --foreground: 325 30% 95%;
+    --card: 240 10% 12%;
+    --card-foreground: 325 30% 95%;
+    --popover: 240 10% 12%;
+    --popover-foreground: 325 30% 95%;
+    --primary: 340 65% 65%;
+    --primary-foreground: 240 10% 8%;
+    --secondary: 240 8% 16%;
+    --secondary-foreground: 325 30% 95%;
+    --muted: 240 8% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 8% 16%;
+    --accent-foreground: 325 30% 95%;
+    --destructive: 350 65% 55%;
+    --destructive-foreground: 325 30% 95%;
+    --border: 240 8% 16%;
+    --input: 240 8% 16%;
+    --ring: 340 65% 65%;
+    
+    /* Custom kindness colors for dark mode */
+    --kindness-bg: 240 10% 8%;
+    --kindness-soft-green: 140 25% 45%;
+    --kindness-soft-red: 350 25% 45%;
+    --kindness-warm: 45 40% 55%;
+    --kindness-cool: 200 25% 45%;
+    --kindness-gentle: 280 20% 55%;
+    
+    --sidebar-background: 240 10% 12%;
+    --sidebar-foreground: 325 30% 95%;
+    --sidebar-primary: 340 65% 65%;
+    --sidebar-primary-foreground: 240 10% 8%;
+    --sidebar-accent: 240 8% 16%;
+    --sidebar-accent-foreground: 325 30% 95%;
+    --sidebar-border: 240 8% 16%;
+    --sidebar-ring: 340 65% 65%;
   }
 }
 
@@ -100,6 +97,39 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground min-h-screen;
+  }
+}
+
+@layer components {
+  .kindness-card {
+    @apply bg-card rounded-2xl p-6 shadow-lg border border-border backdrop-blur-sm;
+  }
+  
+  .mood-button {
+    @apply w-full p-6 rounded-2xl border-2 border-border bg-card hover:bg-accent transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .action-button-done {
+    @apply bg-[hsl(var(--kindness-soft-green))] hover:bg-[hsl(var(--kindness-soft-green)/0.8)] text-foreground font-medium rounded-xl px-6 py-3 transition-all duration-200 hover:scale-105;
+  }
+  
+  .action-button-skip {
+    @apply bg-[hsl(var(--kindness-soft-red))] hover:bg-[hsl(var(--kindness-soft-red)/0.8)] text-foreground font-medium rounded-xl px-6 py-3 transition-all duration-200 hover:scale-105;
+  }
+  
+  .points-glow {
+    @apply animate-pulse drop-shadow-lg;
+  }
+}
+
+@layer utilities {
+  .animate-glow {
+    animation: glow 1.5s ease-in-out;
+  }
+  
+  @keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 8px hsl(var(--glow-color) / 0.3)); }
+    50% { filter: drop-shadow(0 0 16px hsl(var(--glow-color) / 0.6)); }
   }
 }
