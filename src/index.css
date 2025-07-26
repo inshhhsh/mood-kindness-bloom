@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    /* Original Retro Pink Theme */
+    /* Enhanced Retro Pixel Color Palette - Synthwave/Vaporwave Theme */
     --background: 315 40% 92%;
     --foreground: 260 30% 15%;
     --card: 320 50% 90%;
@@ -26,49 +26,7 @@
     --border: 320 40% 70%;
     --input: 320 40% 82%;
     --ring: 320 80% 65%;
-    --radius: 0rem;
-
-    /* Original theme colors */
-    --neon-pink: 320 80% 65%;
-    --neon-cyan: 200 100% 80%;
-    --neon-purple: 280 60% 75%;
-    --neon-green: 120 50% 75%;
-    --electric-blue: 200 100% 80%;
-    --hot-magenta: 320 80% 65%;
-    --laser-orange: 25 80% 70%;
-  }
-
-  /* Synthwave Theme */
-  :root[data-theme="synthwave"] {
-    --background: 220 13% 9%;
-    --foreground: 315 100% 85%;
-    --card: 315 20% 12%;
-    --card-foreground: 315 100% 85%;
-    --popover: 315 20% 12%;
-    --popover-foreground: 315 100% 85%;
-    --primary: 315 100% 75%;
-    --primary-foreground: 220 13% 9%;
-    --secondary: 280 100% 70%;
-    --secondary-foreground: 220 13% 9%;
-    --muted: 315 20% 20%;
-    --muted-foreground: 315 30% 70%;
-    --accent: 200 100% 75%;
-    --accent-foreground: 220 13% 9%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 315 30% 25%;
-    --input: 315 30% 25%;
-    --ring: 315 100% 75%;
-
-    /* Synthwave colors */
-    --neon-pink: 315 100% 75%;
-    --neon-cyan: 180 100% 65%;
-    --neon-purple: 280 100% 70%;
-    --neon-green: 120 60% 80%;
-    --electric-blue: 200 100% 75%;
-    --hot-magenta: 330 100% 70%;
-    --laser-orange: 25 100% 70%;
-  }
+    --radius: 0rem; /* Remove border radius for pixel style */
 
     /* Pixel window colors */
     --window-chrome: 300 20% 88%;
@@ -106,7 +64,6 @@
     --sidebar-ring: 320 60% 75%;
   }
 
-@layer base {
   .dark {
     --background: 280 20% 15%;
     --foreground: 320 80% 95%;
@@ -171,181 +128,90 @@
   body {
     @apply bg-background text-foreground min-h-screen;
     font-family: 'Press Start 2P', cursive;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-    position: relative;
-    transition: all 0.3s ease;
-  }
-
-  /* Retro theme background */
-  :root body {
     background: 
       linear-gradient(45deg, 
-        hsl(320, 80%, 95%) 0%, 
-        hsl(280, 60%, 93%) 25%,
-        hsl(200, 100%, 95%) 50%,
-        hsl(320, 70%, 94%) 75%,
-        hsl(280, 50%, 96%) 100%
+        hsl(var(--kindness-primary) / 0.05) 0%, 
+        hsl(var(--kindness-secondary) / 0.05) 25%,
+        hsl(var(--kindness-accent) / 0.08) 50%,
+        hsl(var(--kindness-electric) / 0.06) 75%,
+        hsl(var(--kindness-neon) / 0.04) 100%
       ),
       repeating-linear-gradient(
         90deg,
         transparent 0px,
         transparent 2px,
-        hsl(320, 80%, 65% / 0.02) 2px,
-        hsl(320, 80%, 65% / 0.02) 4px
+        hsl(var(--kindness-primary) / 0.02) 2px,
+        hsl(var(--kindness-primary) / 0.02) 4px
       );
-  }
-
-  /* Synthwave theme background with scanlines */
-  :root[data-theme="synthwave"] body {
-    background: 
-      linear-gradient(135deg, 
-        hsl(220, 13%, 9%) 0%, 
-        hsl(315, 20%, 12%) 50%, 
-        hsl(280, 30%, 15%) 100%);
-  }
-
-  :root[data-theme="synthwave"] body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, hsla(180, 100%, 65%, 0.03) 2px, hsla(180, 100%, 65%, 0.03) 4px);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  :root[data-theme="synthwave"] body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, transparent 0%, hsla(315, 100%, 75%, 0.05) 100%);
-    pointer-events: none;
-    z-index: 1;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
 }
 
 @layer components {
-  /* Enhanced Pixel Window System - Adaptive to theme */
+  /* Pixel Window System */
   .pixel-window {
     @apply border-4 bg-card relative;
     border-style: solid;
+    border-color: hsl(var(--window-border));
+    border-image: none;
     image-rendering: pixelated;
-    z-index: 2;
-    transition: all 0.3s ease;
-  }
-
-  /* Retro theme window */
-  :root .pixel-window {
-    border-color: hsl(320, 40%, 70%);
     box-shadow: 
-      inset 3px 3px 0px hsl(320, 80%, 80%),
-      inset -3px -3px 0px hsl(320, 40%, 55%),
-      6px 6px 0px hsl(320, 40%, 70% / 0.4),
-      0 0 20px hsl(320, 80%, 65% / 0.3);
-  }
-
-  /* Synthwave theme window */
-  :root[data-theme="synthwave"] .pixel-window {
-    border-color: hsl(var(--neon-cyan));
-    box-shadow: 
-      inset 2px 2px 0 hsl(var(--neon-pink) / 0.4),
-      inset -2px -2px 0 hsl(var(--background) / 0.8),
-      0 0 30px hsl(var(--neon-cyan) / 0.3),
-      0 0 60px hsl(var(--neon-pink) / 0.1);
-    animation: pixel-glow 3s ease-in-out infinite alternate;
+      inset 3px 3px 0px hsl(var(--kindness-accent) / 0.8),
+      inset -3px -3px 0px hsl(var(--kindness-electric) / 0.6),
+      6px 6px 0px hsl(var(--window-border) / 0.4),
+      0 0 20px hsl(var(--kindness-primary) / 0.3);
   }
 
   .pixel-window-titlebar {
-    @apply h-10 border-b-4 flex items-center px-3 relative;
-    transition: all 0.3s ease;
-  }
-
-  /* Retro theme titlebar */
-  :root .pixel-window-titlebar {
-    border-color: hsl(320, 40%, 70%);
+    @apply h-10 border-b-4 border-window-border flex items-center px-3 relative;
     background: linear-gradient(90deg, 
-      hsl(320, 80%, 65%) 0%, 
-      hsl(280, 60%, 75%) 50%,
-      hsl(200, 100%, 80%) 100%);
-    color: hsl(0, 0%, 100%);
-  }
-
-  /* Synthwave theme titlebar */
-  :root[data-theme="synthwave"] .pixel-window-titlebar {
-    border-color: hsl(var(--neon-cyan));
-    background: linear-gradient(90deg, 
-      hsl(var(--neon-pink)) 0%, 
-      hsl(var(--neon-purple)) 50%,
-      hsl(var(--electric-blue)) 100%);
-    color: hsl(var(--background));
-    text-shadow: 1px 1px 0 hsl(var(--background));
-    animation: title-scroll 8s linear infinite;
-    background-size: 200% 100%;
+      hsl(var(--kindness-primary)) 0%, 
+      hsl(var(--kindness-electric)) 30%,
+      hsl(var(--kindness-accent)) 50%,
+      hsl(var(--kindness-electric)) 70%,
+      hsl(var(--kindness-primary)) 100%);
+    box-shadow: 
+      inset 0 2px 0px hsl(var(--kindness-neon) / 0.6),
+      inset 0 -2px 0px hsl(var(--kindness-electric) / 0.8);
   }
 
   .pixel-window-content {
     @apply p-6;
   }
 
-  /* Enhanced Pixel Buttons */
+  /* Pixel Buttons */
   .pixel-button {
     @apply relative font-bold text-sm;
     font-family: 'Press Start 2P', cursive;
-    border: 2px solid hsl(var(--neon-cyan));
-    background: linear-gradient(145deg, 
-      hsl(var(--neon-pink)) 0%, 
-      hsl(var(--hot-magenta)) 50%,
-      hsl(var(--neon-purple)) 100%);
-    color: hsl(var(--background));
+    border: 3px solid;
+    border-color: hsl(var(--window-border));
+    background: hsl(var(--button-base));
+    color: hsl(var(--button-base-foreground, var(--foreground)));
     padding: 12px 16px;
     transition: all 0.1s ease;
     image-rendering: pixelated;
-    text-shadow: 1px 1px 0 hsl(var(--background) / 0.5);
     box-shadow: 
-      inset 2px 2px 0 hsl(var(--neon-cyan) / 0.6),
-      inset -2px -2px 0 hsl(var(--neon-purple) / 0.8),
-      3px 3px 0 hsl(var(--background)),
-      0 0 15px hsl(var(--neon-pink) / 0.5);
+      inset 2px 2px 0px hsl(var(--button-border-light)),
+      inset -2px -2px 0px hsl(var(--button-border-dark));
   }
 
   .pixel-button:hover {
-    background: linear-gradient(145deg, 
-      hsl(var(--neon-cyan)) 0%, 
-      hsl(var(--electric-blue)) 50%,
-      hsl(var(--neon-green)) 100%);
+    background: hsl(var(--button-hover));
     transform: translate(-1px, -1px);
     box-shadow: 
-      inset 2px 2px 0 hsl(var(--neon-green) / 0.8),
-      inset -2px -2px 0 hsl(var(--neon-cyan) / 0.6),
-      4px 4px 0 hsl(var(--background)),
-      0 0 25px hsl(var(--neon-cyan) / 0.8),
-      0 0 50px hsl(var(--neon-green) / 0.3);
-    animation: button-pulse 0.3s ease-in-out;
-  }
-
-  @keyframes button-pulse {
-    0% { transform: translate(-1px, -1px) scale(1); }
-    50% { transform: translate(-1px, -1px) scale(1.05); }
-    100% { transform: translate(-1px, -1px) scale(1); }
+      inset 2px 2px 0px hsl(var(--button-border-light)),
+      inset -2px -2px 0px hsl(var(--button-border-dark)),
+      3px 3px 0px hsl(var(--window-border) / 0.5);
   }
 
   .pixel-button:active {
-    transform: translate(2px, 2px);
-    background: linear-gradient(145deg, 
-      hsl(var(--laser-orange)) 0%, 
-      hsl(var(--hot-magenta)) 100%);
+    background: hsl(var(--button-pressed));
+    transform: translate(1px, 1px);
     box-shadow: 
-      inset 3px 3px 0 hsl(var(--background) / 0.3),
-      inset -1px -1px 0 hsl(var(--laser-orange)),
-      1px 1px 0 hsl(var(--background)),
-      0 0 20px hsl(var(--laser-orange) / 0.8);
+      inset -1px -1px 0px hsl(var(--button-border-light)),
+      inset 1px 1px 0px hsl(var(--button-border-dark));
   }
 
   /* Pixel mood selector */
@@ -438,22 +304,12 @@
   }
   
   @keyframes pixel-glow {
-    0% { box-shadow: 
-      inset 2px 2px 0 hsl(var(--neon-pink) / 0.4),
-      inset -2px -2px 0 hsl(var(--background) / 0.8),
-      0 0 30px hsl(var(--neon-cyan) / 0.3),
-      0 0 60px hsl(var(--neon-pink) / 0.1); }
-    100% { box-shadow: 
-      inset 2px 2px 0 hsl(var(--neon-cyan) / 0.4),
-      inset -2px -2px 0 hsl(var(--background) / 0.8),
-      0 0 40px hsl(var(--neon-pink) / 0.4),
-      0 0 80px hsl(var(--neon-cyan) / 0.2); }
-  }
-
-  @keyframes title-scroll {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    from {
+      filter: drop-shadow(0 0 4px var(--glow-color)) contrast(1);
+    }
+    to {
+      filter: drop-shadow(0 0 12px var(--glow-color)) drop-shadow(0 0 20px var(--glow-color)) contrast(1.1);
+    }
   }
 
   @keyframes pixel-progress-animate {
