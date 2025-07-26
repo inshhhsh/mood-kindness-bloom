@@ -4,10 +4,15 @@ import { TaskList } from '@/components/TaskList';
 import { ReflectionForm } from '@/components/ReflectionForm';
 import { ProgressPage } from '@/components/ProgressPage';
 import { useKindnessApp, Mood } from '@/hooks/useKindnessApp';
+import { useAuth } from '@/hooks/useAuth';
+import AuthPage from './AuthPage';
+import { Button } from '@/components/ui/button';
+import { LogOut } from 'lucide-react';
 
 type AppPage = 'mood' | 'tasks' | 'reflection' | 'progress';
 
 export default function KindnessApp() {
+  const { user, loading, signOut } = useAuth();
   const [currentPage, setCurrentPage] = useState<AppPage>('mood');
   const [currentTaskId, setCurrentTaskId] = useState<string>('');
   
@@ -23,7 +28,7 @@ export default function KindnessApp() {
     getPlantEmoji,
     getBadge,
     getNextMilestone,
-  } = useKindnessApp();
+  } = useKindnessApp(user);
 
   const handleMoodSelect = async (mood: Mood) => {
     setSelectedMood(mood);
@@ -75,10 +80,42 @@ export default function KindnessApp() {
     setCurrentPage('tasks');
   };
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-accent/20">
+        <div className="text-center">
+          <div className="text-6xl mb-4 animate-pulse">💛</div>
+          <p className="text-lg text-muted-foreground">Loading KindnessAI...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show auth page if not logged in
+  if (!user) {
+    return <AuthPage />;
+  }
+
+  // Add logout button to mood selector
+  const MoodSelectorWithLogout = () => (
+    <div className="relative">
+      <Button
+        variant="ghost"
+        onClick={signOut}
+        className="absolute top-4 right-4 z-10"
+      >
+        <LogOut className="w-4 h-4 mr-2" />
+        Sign Out
+      </Button>
+      <MoodSelector onMoodSelect={handleMoodSelect} />
+    </div>
+  );
+
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'mood':
-        return <MoodSelector onMoodSelect={handleMoodSelect} />;
+        return <MoodSelectorWithLogout />;
       
       case 'tasks':
         return (
@@ -118,7 +155,7 @@ export default function KindnessApp() {
         );
       
       default:
-        return <MoodSelector onMoodSelect={handleMoodSelect} />;
+        return <MoodSelectorWithLogout />;
     }
   };
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { User } from '@supabase/supabase-js';
 
 export type Mood = 'sad' | 'tired' | 'okay' | 'energized';
 
@@ -17,39 +18,36 @@ export interface UserData {
   points: number;
 }
 
-export function useKindnessApp() {
+export function useKindnessApp(user: User | null) {
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
   const [currentTasks, setCurrentTasks] = useState<KindnessTask[]>([]);
   const [userPoints, setUserPoints] = useState(0);
-  const [userId, setUserId] = useState<string>('anonymous');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  // Initialize user and get points
+  // Initialize user and get points when user changes
   useEffect(() => {
-    initializeUser();
-  }, []);
+    if (user) {
+      initializeUser();
+    }
+  }, [user]);
 
   const initializeUser = async () => {
+    if (!user) return;
+    
     try {
-      // For demo purposes, we'll use a fixed UUID for anonymous user
-      const anonymousUserId = '00000000-0000-0000-0000-000000000000';
-      setUserId(anonymousUserId);
-      
-      // Check if user exists, if not create them
-      const { data: existingUser } = await supabase
+      // Get user points
+      const { data: userData } = await supabase
         .from('users')
         .select('*')
-        .eq('user_id', anonymousUserId)
+        .eq('user_id', user.id)
         .maybeSingle();
 
-      if (!existingUser) {
-        await supabase
-          .from('users')
-          .insert({ user_id: anonymousUserId, points: 0 });
-        setUserPoints(0);
+      if (userData) {
+        setUserPoints(userData.points);
       } else {
-        setUserPoints(existingUser.points);
+        // This should not happen as the trigger creates the user record
+        setUserPoints(0);
       }
     } catch (error) {
       console.error('Error initializing user:', error);
@@ -85,12 +83,14 @@ export function useKindnessApp() {
   };
 
   const completeTask = async (taskId: string) => {
+    if (!user) return false;
+    
     try {
       // Add point to user
       const { error: updateError } = await supabase
         .from('users')
         .update({ points: userPoints + 1 })
-        .eq('user_id', userId);
+        .eq('user_id', user.id);
 
       if (updateError) throw updateError;
 
@@ -114,6 +114,8 @@ export function useKindnessApp() {
   };
 
   const saveReflection = async (taskId: string, feedback: string) => {
+    if (!user) return false;
+    
     try {
       const { error } = await supabase
         .from('reflections')
@@ -121,7 +123,7 @@ export function useKindnessApp() {
           task_id: taskId,
           mood_selected: selectedMood,
           user_feedback: feedback,
-          user_id: userId
+          user_id: user.id
         });
 
       if (error) throw error;
@@ -166,7 +168,6 @@ export function useKindnessApp() {
     setSelectedMood,
     currentTasks,
     userPoints,
-    userId,
     isLoading,
     fetchTasksForMood,
     completeTask,
