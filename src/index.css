@@ -105,7 +105,9 @@
     --sidebar-border: 320 30% 80%;
     --sidebar-ring: 320 60% 75%;
   }
+}
 
+@layer base {
   .dark {
     --background: 280 20% 15%;
     --foreground: 320 80% 95%;
