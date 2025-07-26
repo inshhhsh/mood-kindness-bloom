@@ -16,6 +16,7 @@ export default function KindnessApp() {
   const [currentPage, setCurrentPage] = useState<AppPage>('mood');
   const [currentTaskId, setCurrentTaskId] = useState<string>('');
   
+  // Always call useKindnessApp, but it will handle null user internally
   const {
     selectedMood,
     setSelectedMood,
