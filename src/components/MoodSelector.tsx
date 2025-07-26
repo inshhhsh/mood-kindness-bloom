@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Mood } from '@/hooks/useKindnessApp';
 import { PixelMoodIcons } from './PixelIcons';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 interface MoodOption {
   mood: Mood;
@@ -21,7 +22,8 @@ interface MoodSelectorProps {
 
 export function MoodSelector({ onMoodSelect }: MoodSelectorProps) {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-background to-accent/20">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-background to-accent/20 relative">
+      <ThemeSwitcher />
       {/* Pixel Window Header */}
       <div className="kindness-card mb-12 max-w-2xl">
         <div className="pixel-window-titlebar">
