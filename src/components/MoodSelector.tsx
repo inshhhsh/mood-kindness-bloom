@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Mood } from '@/hooks/useKindnessApp';
+import { PixelMoodIcons } from './PixelIcons';
 
 interface MoodOption {
   mood: Mood;
@@ -8,10 +9,10 @@ interface MoodOption {
 }
 
 const moodOptions: MoodOption[] = [
-  { mood: 'sad', emoji: '😔', label: 'Sad' },
-  { mood: 'tired', emoji: '😐', label: 'Tired' },
-  { mood: 'okay', emoji: '🙂', label: 'Okay' },
-  { mood: 'energized', emoji: '🤩', label: 'Energized' },
+  { mood: 'sad', emoji: 'sad', label: 'Sad' },
+  { mood: 'tired', emoji: 'tired', label: 'Tired' },
+  { mood: 'okay', emoji: 'okay', label: 'Okay' },
+  { mood: 'energized', emoji: 'energized', label: 'Energized' },
 ];
 
 interface MoodSelectorProps {
@@ -41,12 +42,14 @@ export function MoodSelector({ onMoodSelect }: MoodSelectorProps) {
           <Button
             key={mood}
             onClick={() => onMoodSelect(mood)}
-            className="mood-button"
+            className="mood-button hover:scale-105 transition-transform"
             variant="pixel-mood"
             size="mood"
           >
-            <span className="emoji text-6xl">{emoji}</span>
-            <span className="pixel-text-body">{label}</span>
+            <div className="flex items-center justify-center">
+              {PixelMoodIcons[emoji as keyof typeof PixelMoodIcons]()}
+            </div>
+            <span className="pixel-text-body text-neon-cyan">{label}</span>
           </Button>
         ))}
       </div>

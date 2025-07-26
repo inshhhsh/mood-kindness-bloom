@@ -52,6 +52,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Enhanced synthwave colors
+				"neon-pink": "hsl(var(--neon-pink))",
+				"neon-cyan": "hsl(var(--neon-cyan))",
+				"neon-purple": "hsl(var(--neon-purple))",
+				"neon-green": "hsl(var(--neon-green))",
+				"electric-blue": "hsl(var(--electric-blue))",
+				"hot-magenta": "hsl(var(--hot-magenta))",
+				"laser-orange": "hsl(var(--laser-orange))",
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
