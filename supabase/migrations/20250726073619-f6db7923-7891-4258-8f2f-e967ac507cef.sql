@@ -9,6 +9,7 @@ CREATE TABLE public.users (
 
 -- Create kindness_tasks table
 CREATE TABLE public.kindness_tasks (
+
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   task_text TEXT NOT NULL,
   category TEXT NOT NULL CHECK (category IN ('self', 'others')),

@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { User } from '@supabase/supabase-js';
+import { fetchTasks } from '@/lib/api';
 
 export type Mood = 'sad' | 'tired' | 'okay' | 'energized';
 
 export interface KindnessTask {
   id: string;
   task_text: string;
+  prompt: string;
   category: 'self' | 'others';
   mood_tag: Mood;
 }
@@ -16,6 +18,14 @@ export interface UserData {
   id: string;
   user_id: string | null;
   points: number;
+}
+
+interface TaskResponse {
+  id: string;
+  task_text: string;
+  prompt: string | null;
+  mood_tag: Mood;
+  category: 'self' | 'others';
 }
 
 export function useKindnessApp(user: User | null) {
@@ -62,25 +72,36 @@ export function useKindnessApp(user: User | null) {
   const fetchTasksForMood = async (mood: Mood) => {
     setIsLoading(true);
     try {
-      const { data: tasks, error } = await supabase
-        .from('kindness_tasks')
-        .select('*')
-        .eq('mood_tag', mood)
-        .limit(3);
+      const tasks = await fetchTasks(mood);
 
-      if (error) throw error;
-      setCurrentTasks((tasks || []) as KindnessTask[]);
+      setCurrentTasks(tasks.map((task, index) => ({
+        id: `task-${index}-${Date.now()}`,
+        task_text: task.task_text,
+        prompt: task.prompt || generateFallbackPrompt(task.task_text, mood),
+        category: 'self',
+        mood_tag: mood
+      })));
     } catch (error) {
-      console.error('Error fetching tasks:', error);
+      console.error('Task processing failed:', error);
       toast({
-        title: "Error",
-        description: "Failed to fetch kindness tasks",
-        variant: "destructive"
+        title: "Connection Issue",
+        description: "Using offline tasks - some features may be limited",
+        variant: "destructive",
       });
     } finally {
       setIsLoading(false);
     }
   };
+
+  function generateFallbackPrompt(taskText: string, mood: Mood): string {
+    const fallbacks: Record<Mood, string[]> = {
+      sad: ["Even small steps count!", "You've got this!"],
+      tired: ["Baby steps are still progress!", "You can do this!"],
+      okay: ["Let's spread some joy!", "Nice opportunity to be kind!"],
+      energized: ["Let's channel this energy!", "Time to shine!"]
+    };
+    return fallbacks[mood][Math.floor(Math.random() * fallbacks[mood].length)];
+  }
 
   const completeTask = async (taskId: string) => {
     if (!user) return false;
@@ -162,6 +183,10 @@ export function useKindnessApp(user: User | null) {
     if (points < 10) return { target: 10, remaining: 10 - points };
     return { target: 15, remaining: 15 - points };
   };
+
+
+
+
 
   return {
     selectedMood,
