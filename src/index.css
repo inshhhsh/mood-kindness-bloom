@@ -2,92 +2,119 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Pixel Art Retro Design System - All colors in HSL */
 
 @layer base {
   :root {
-    /* Pastel color scheme for kindness app */
-    --background: 325 50% 98%;
-    --foreground: 240 10% 20%;
-    --card: 320 30% 96%;
-    --card-foreground: 240 10% 20%;
-    --popover: 320 30% 96%;
-    --popover-foreground: 240 10% 20%;
-    --primary: 340 65% 75%;
+    /* Pixel art retro color palette - Pink Theme */
+    --background: 330 25% 96%;
+    --foreground: 240 10% 9%;
+    --card: 330 30% 94%;
+    --card-foreground: 240 10% 9%;
+    --popover: 330 30% 94%;
+    --popover-foreground: 240 10% 9%;
+    --primary: 320 60% 75%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 280 25% 85%;
-    --secondary-foreground: 240 10% 20%;
-    --muted: 300 20% 90%;
-    --muted-foreground: 240 5% 45%;
-    --accent: 200 30% 85%;
-    --accent-foreground: 240 10% 20%;
-    --destructive: 350 65% 75%;
+    --secondary: 300 40% 85%;
+    --secondary-foreground: 240 10% 9%;
+    --muted: 300 20% 88%;
+    --muted-foreground: 240 5% 35%;
+    --accent: 290 50% 80%;
+    --accent-foreground: 240 10% 9%;
+    --destructive: 0 70% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 320 25% 88%;
-    --input: 320 25% 88%;
-    --ring: 340 65% 75%;
-    --radius: 1rem;
-    
-    /* Custom kindness colors */
-    --kindness-bg: 325 50% 98%;
-    --kindness-soft-green: 140 30% 75%;
-    --kindness-soft-red: 350 25% 80%;
-    --kindness-warm: 45 60% 85%;
-    --kindness-cool: 200 30% 85%;
-    --kindness-gentle: 280 25% 85%;
-    
+    --border: 320 30% 80%;
+    --input: 320 30% 85%;
+    --ring: 320 60% 75%;
+    --radius: 0rem; /* Remove border radius for pixel style */
+
+    /* Pixel window colors */
+    --window-chrome: 300 20% 88%;
+    --window-border: 240 20% 60%;
+    --window-titlebar: 320 50% 70%;
+    --window-active: 320 60% 75%;
+
+    /* Pixel button colors */
+    --button-base: 320 60% 75%;
+    --button-hover: 320 70% 80%;
+    --button-pressed: 320 50% 65%;
+    --button-border-light: 320 80% 85%;
+    --button-border-dark: 320 40% 55%;
+
+    /* Custom kindness colors - Pixel theme */
+    --kindness-primary: 320 60% 75%;
+    --kindness-secondary: 300 40% 85%;
+    --kindness-accent: 290 50% 80%;
+    --kindness-warm: 350 60% 80%;
+    --kindness-cool: 280 40% 80%;
+
     /* Point glow animation */
-    --glow-color: 45 100% 70%;
-    
-    --sidebar-background: 325 40% 96%;
-    --sidebar-foreground: 240 10% 20%;
-    --sidebar-primary: 340 65% 75%;
+    --glow-color: 320 60% 75%;
+
+    /* Sidebar */
+    --sidebar-background: 330 25% 96%;
+    --sidebar-foreground: 240 10% 9%;
+    --sidebar-primary: 320 60% 75%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 320 25% 88%;
-    --sidebar-accent-foreground: 240 10% 20%;
-    --sidebar-border: 320 25% 88%;
-    --sidebar-ring: 340 65% 75%;
+    --sidebar-accent: 300 20% 88%;
+    --sidebar-accent-foreground: 240 10% 9%;
+    --sidebar-border: 320 30% 80%;
+    --sidebar-ring: 320 60% 75%;
   }
 
   .dark {
-    --background: 240 10% 8%;
-    --foreground: 325 30% 95%;
-    --card: 240 10% 12%;
-    --card-foreground: 325 30% 95%;
-    --popover: 240 10% 12%;
-    --popover-foreground: 325 30% 95%;
-    --primary: 340 65% 65%;
-    --primary-foreground: 240 10% 8%;
-    --secondary: 240 8% 16%;
-    --secondary-foreground: 325 30% 95%;
-    --muted: 240 8% 16%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 240 8% 16%;
-    --accent-foreground: 325 30% 95%;
-    --destructive: 350 65% 55%;
-    --destructive-foreground: 325 30% 95%;
-    --border: 240 8% 16%;
-    --input: 240 8% 16%;
-    --ring: 340 65% 65%;
-    
-    /* Custom kindness colors for dark mode */
-    --kindness-bg: 240 10% 8%;
-    --kindness-soft-green: 140 25% 45%;
-    --kindness-soft-red: 350 25% 45%;
-    --kindness-warm: 45 40% 55%;
-    --kindness-cool: 200 25% 45%;
-    --kindness-gentle: 280 20% 55%;
-    
-    --sidebar-background: 240 10% 12%;
-    --sidebar-foreground: 325 30% 95%;
-    --sidebar-primary: 340 65% 65%;
-    --sidebar-primary-foreground: 240 10% 8%;
-    --sidebar-accent: 240 8% 16%;
-    --sidebar-accent-foreground: 325 30% 95%;
-    --sidebar-border: 240 8% 16%;
-    --sidebar-ring: 340 65% 65%;
+    --background: 280 20% 15%;
+    --foreground: 320 80% 95%;
+    --card: 280 25% 18%;
+    --card-foreground: 320 80% 95%;
+    --popover: 280 25% 18%;
+    --popover-foreground: 320 80% 95%;
+    --primary: 320 70% 70%;
+    --primary-foreground: 280 20% 15%;
+    --secondary: 300 30% 25%;
+    --secondary-foreground: 320 80% 95%;
+    --muted: 280 15% 25%;
+    --muted-foreground: 320 20% 70%;
+    --accent: 290 40% 30%;
+    --accent-foreground: 320 80% 95%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 280 30% 30%;
+    --input: 280 30% 25%;
+    --ring: 320 70% 70%;
+
+    /* Pixel window colors - Dark */
+    --window-chrome: 280 15% 25%;
+    --window-border: 320 40% 40%;
+    --window-titlebar: 320 50% 50%;
+    --window-active: 320 70% 70%;
+
+    /* Pixel button colors - Dark */
+    --button-base: 320 70% 70%;
+    --button-hover: 320 80% 75%;
+    --button-pressed: 320 60% 60%;
+    --button-border-light: 320 90% 80%;
+    --button-border-dark: 320 50% 50%;
+
+    /* Custom kindness colors for dark mode - Pixel theme */
+    --kindness-primary: 320 70% 70%;
+    --kindness-secondary: 300 30% 25%;
+    --kindness-accent: 290 40% 30%;
+    --kindness-warm: 350 50% 60%;
+    --kindness-cool: 280 30% 60%;
+
+    /* Sidebar dark */
+    --sidebar-background: 280 20% 15%;
+    --sidebar-foreground: 320 80% 95%;
+    --sidebar-primary: 320 70% 70%;
+    --sidebar-primary-foreground: 280 20% 15%;
+    --sidebar-accent: 280 15% 25%;
+    --sidebar-accent-foreground: 320 80% 95%;
+    --sidebar-border: 280 30% 30%;
+    --sidebar-ring: 320 70% 70%;
+
+    /* Custom glow effect for dark mode */
+    --glow-color: 320 70% 70%;
   }
 }
 
@@ -98,38 +125,170 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground min-h-screen;
+    font-family: 'Press Start 2P', cursive;
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsl(var(--kindness-primary) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(var(--kindness-accent) / 0.1) 0%, transparent 50%);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
 }
 
 @layer components {
+  /* Pixel Window System */
+  .pixel-window {
+    @apply border-4 bg-card relative;
+    border-style: solid;
+    border-color: hsl(var(--window-border));
+    border-image: none;
+    image-rendering: pixelated;
+    box-shadow: 
+      inset 2px 2px 0px hsl(var(--button-border-light)),
+      inset -2px -2px 0px hsl(var(--button-border-dark)),
+      4px 4px 0px hsl(var(--window-border) / 0.3);
+  }
+
+  .pixel-window-titlebar {
+    @apply h-8 bg-window-titlebar border-b-4 border-window-border flex items-center px-2 relative;
+    background: linear-gradient(90deg, 
+      hsl(var(--window-titlebar)) 0%, 
+      hsl(var(--window-active)) 50%, 
+      hsl(var(--window-titlebar)) 100%);
+  }
+
+  .pixel-window-content {
+    @apply p-6;
+  }
+
+  /* Pixel Buttons */
+  .pixel-button {
+    @apply relative font-bold text-sm;
+    font-family: 'Press Start 2P', cursive;
+    border: 3px solid;
+    border-color: hsl(var(--window-border));
+    background: hsl(var(--button-base));
+    color: hsl(var(--button-base-foreground, var(--foreground)));
+    padding: 12px 16px;
+    transition: all 0.1s ease;
+    image-rendering: pixelated;
+    box-shadow: 
+      inset 2px 2px 0px hsl(var(--button-border-light)),
+      inset -2px -2px 0px hsl(var(--button-border-dark));
+  }
+
+  .pixel-button:hover {
+    background: hsl(var(--button-hover));
+    transform: translate(-1px, -1px);
+    box-shadow: 
+      inset 2px 2px 0px hsl(var(--button-border-light)),
+      inset -2px -2px 0px hsl(var(--button-border-dark)),
+      3px 3px 0px hsl(var(--window-border) / 0.5);
+  }
+
+  .pixel-button:active {
+    background: hsl(var(--button-pressed));
+    transform: translate(1px, 1px);
+    box-shadow: 
+      inset -1px -1px 0px hsl(var(--button-border-light)),
+      inset 1px 1px 0px hsl(var(--button-border-dark));
+  }
+
+  /* Pixel mood selector */
+  .pixel-mood-selector {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-lg;
+  }
+
+  .pixel-mood-button {
+    @apply pixel-button flex-col space-y-4 h-32 text-center items-center justify-center;
+    min-width: 200px;
+  }
+
+  .pixel-mood-button .emoji {
+    @apply text-4xl;
+    image-rendering: pixelated;
+    filter: contrast(1.2) saturate(1.1);
+  }
+
+  /* Kindness app specific styles - Pixel themed */
   .kindness-card {
-    @apply bg-card rounded-2xl p-6 shadow-lg border border-border backdrop-blur-sm;
+    @apply pixel-window bg-card/90 backdrop-blur-sm;
   }
-  
+
   .mood-button {
-    @apply w-full p-6 rounded-2xl border-2 border-border bg-card hover:bg-accent transition-all duration-300 hover:scale-105 hover:shadow-lg;
+    @apply pixel-mood-button transition-all duration-200;
   }
-  
+
   .action-button-done {
-    @apply bg-[hsl(var(--kindness-soft-green))] hover:bg-[hsl(var(--kindness-soft-green)/0.8)] text-foreground font-medium rounded-xl px-6 py-3 transition-all duration-200 hover:scale-105;
+    @apply pixel-button;
+    --button-base: var(--kindness-primary);
+    --button-hover: var(--kindness-warm);
+    --button-pressed: var(--button-base);
+    --button-base-foreground: var(--primary-foreground);
   }
-  
+
   .action-button-skip {
-    @apply bg-[hsl(var(--kindness-soft-red))] hover:bg-[hsl(var(--kindness-soft-red)/0.8)] text-foreground font-medium rounded-xl px-6 py-3 transition-all duration-200 hover:scale-105;
+    @apply pixel-button;
+    --button-base: var(--kindness-cool);
+    --button-hover: var(--muted);
+    --button-pressed: var(--button-base);
+    --button-base-foreground: var(--foreground);
   }
-  
+
   .points-glow {
-    @apply animate-pulse drop-shadow-lg;
+    @apply animate-pulse;
+    filter: drop-shadow(0 0 8px hsl(var(--kindness-primary)));
+    image-rendering: pixelated;
+  }
+
+  /* Pixel progress bar */
+  .pixel-progress {
+    @apply h-6 border-2 border-window-border bg-muted relative overflow-hidden;
+    image-rendering: pixelated;
+  }
+
+  .pixel-progress-fill {
+    @apply h-full transition-all duration-500 ease-out;
+    background: linear-gradient(90deg, 
+      hsl(var(--kindness-primary)) 0%, 
+      hsl(var(--kindness-warm)) 50%, 
+      hsl(var(--kindness-primary)) 100%);
+    background-size: 20px 100%;
+    background-repeat: repeat-x;
+    animation: pixel-progress-animate 1s linear infinite;
+  }
+
+  /* Text styling for pixel theme */
+  .pixel-text-title {
+    font-family: 'Press Start 2P', cursive;
+    @apply text-2xl leading-normal;
+    image-rendering: pixelated;
+    text-shadow: 2px 2px 0px hsl(var(--window-border) / 0.3);
+  }
+
+  .pixel-text-body {
+    font-family: 'Press Start 2P', cursive;
+    @apply text-xs leading-relaxed;
+    image-rendering: pixelated;
   }
 }
 
 @layer utilities {
   .animate-glow {
-    animation: glow 1.5s ease-in-out;
+    animation: pixel-glow 2s ease-in-out infinite alternate;
   }
   
-  @keyframes glow {
-    0%, 100% { filter: drop-shadow(0 0 8px hsl(var(--glow-color) / 0.3)); }
-    50% { filter: drop-shadow(0 0 16px hsl(var(--glow-color) / 0.6)); }
+  @keyframes pixel-glow {
+    from {
+      filter: drop-shadow(0 0 4px var(--glow-color)) contrast(1);
+    }
+    to {
+      filter: drop-shadow(0 0 12px var(--glow-color)) drop-shadow(0 0 20px var(--glow-color)) contrast(1.1);
+    }
+  }
+
+  @keyframes pixel-progress-animate {
+    0% { background-position: 0 0; }
+    100% { background-position: 20px 0; }
   }
 }

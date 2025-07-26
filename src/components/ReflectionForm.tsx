@@ -37,29 +37,33 @@ export function ReflectionForm({ taskId, onSaveReflection, onSkip, onBack }: Ref
           variant="ghost"
           size="sm"
           onClick={onBack}
-          className="mb-6 flex items-center gap-2"
+          className="mb-6 flex items-center gap-2 pixel-text-body"
         >
           <ArrowLeft className="w-4 h-4" />
           Back
         </Button>
 
         <Card className="kindness-card">
-          <CardHeader className="text-center">
+          <div className="pixel-window-titlebar">
+            <div className="pixel-text-body text-window-active">💭 REFLECTION CHAMBER</div>
+          </div>
+          
+          <CardHeader className="text-center pixel-window-content">
             <div className="text-6xl mb-4">💭</div>
-            <CardTitle className="text-2xl">
+            <CardTitle className="pixel-text-title">
               How did that act make you feel?
             </CardTitle>
-            <p className="text-muted-foreground mt-2">
+            <p className="pixel-text-body text-muted-foreground mt-4">
               Take a moment to reflect on your experience (optional)
             </p>
           </CardHeader>
           
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-6 pixel-window-content pt-0">
             <Textarea
               placeholder="Share your thoughts... How did it feel to complete this act of kindness?"
               value={reflection}
               onChange={(e) => setReflection(e.target.value)}
-              className="min-h-32 resize-none"
+              className="min-h-32 resize-none pixel-button border-2 bg-background/50 pixel-text-body p-4"
             />
             
             <div className="flex gap-3">
@@ -70,13 +74,15 @@ export function ReflectionForm({ taskId, onSaveReflection, onSkip, onBack }: Ref
               >
                 {isSubmitting ? (
                   <>
-                    <div className="animate-spin w-4 h-4 mr-2 border-2 border-current border-t-transparent rounded-full" />
-                    Saving...
+                    <div className="animate-spin w-4 h-4 mr-2 border-2 border-current border-t-transparent" />
+                    <span className="pixel-text-body">Saving...</span>
                   </>
                 ) : (
                   <>
                     <Send className="w-4 h-4 mr-2" />
-                    {reflection.trim() ? 'Save Reflection' : 'Continue'}
+                    <span className="pixel-text-body">
+                      {reflection.trim() ? 'Save Reflection' : 'Continue'}
+                    </span>
                   </>
                 )}
               </Button>
@@ -87,7 +93,7 @@ export function ReflectionForm({ taskId, onSaveReflection, onSkip, onBack }: Ref
                 disabled={isSubmitting}
               >
                 <SkipForward className="w-4 h-4 mr-2" />
-                Skip
+                <span className="pixel-text-body">Skip</span>
               </Button>
             </div>
           </CardContent>

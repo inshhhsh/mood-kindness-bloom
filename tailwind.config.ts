@@ -61,7 +61,25 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Pixel theme colors
+				'window-chrome': 'hsl(var(--window-chrome))',
+				'window-border': 'hsl(var(--window-border))',
+				'window-titlebar': 'hsl(var(--window-titlebar))',
+				'window-active': 'hsl(var(--window-active))',
+				'button-base': 'hsl(var(--button-base))',
+				'button-hover': 'hsl(var(--button-hover))',
+				'button-pressed': 'hsl(var(--button-pressed))',
+				'button-border-light': 'hsl(var(--button-border-light))',
+				'button-border-dark': 'hsl(var(--button-border-dark))',
+				'kindness-primary': 'hsl(var(--kindness-primary))',
+				'kindness-secondary': 'hsl(var(--kindness-secondary))',
+				'kindness-accent': 'hsl(var(--kindness-accent))',
+				'kindness-warm': 'hsl(var(--kindness-warm))',
+				'kindness-cool': 'hsl(var(--kindness-cool))'
+			},
+			fontFamily: {
+				'pixel': ['Press Start 2P', 'cursive'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

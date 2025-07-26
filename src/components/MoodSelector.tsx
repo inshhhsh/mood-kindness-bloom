@@ -21,33 +21,42 @@ interface MoodSelectorProps {
 export function MoodSelector({ onMoodSelect }: MoodSelectorProps) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-br from-background to-accent/20">
-      <div className="text-center mb-12 max-w-md">
-        <h1 className="text-4xl font-bold mb-6 text-foreground">
-          How are you feeling today?
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          Choose your mood to discover acts of kindness perfect for you
-        </p>
+      {/* Pixel Window Header */}
+      <div className="kindness-card mb-12 max-w-2xl">
+        <div className="pixel-window-titlebar">
+          <div className="pixel-text-body text-window-active">💖 KINDNESS SELECTOR v1.0</div>
+        </div>
+        <div className="pixel-window-content text-center">
+          <h1 className="pixel-text-title mb-6 text-foreground">
+            How are you feeling today?
+          </h1>
+          <p className="pixel-text-body text-muted-foreground">
+            Choose your mood to discover acts of kindness perfect for you
+          </p>
+        </div>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-lg">
+      <div className="pixel-mood-selector">
         {moodOptions.map(({ mood, emoji, label }) => (
           <Button
             key={mood}
             onClick={() => onMoodSelect(mood)}
-            className="mood-button h-auto flex-col space-y-3"
-            variant="outline"
+            className="mood-button"
+            variant="pixel-mood"
+            size="mood"
           >
-            <span className="text-6xl">{emoji}</span>
-            <span className="text-xl font-semibold">{label}</span>
+            <span className="emoji text-6xl">{emoji}</span>
+            <span className="pixel-text-body">{label}</span>
           </Button>
         ))}
       </div>
       
-      <div className="mt-12 text-center">
-        <p className="text-sm text-muted-foreground">
-          Each mood leads to different kindness suggestions 💛
-        </p>
+      <div className="mt-12 kindness-card max-w-md">
+        <div className="pixel-window-content text-center">
+          <p className="pixel-text-body text-muted-foreground">
+            Each mood leads to different kindness suggestions 💛
+          </p>
+        </div>
       </div>
     </div>
   );
