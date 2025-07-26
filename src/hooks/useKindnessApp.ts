@@ -32,8 +32,8 @@ export function useKindnessApp() {
 
   const initializeUser = async () => {
     try {
-      // For demo purposes, we'll use a fixed anonymous user
-      const anonymousUserId = 'anonymous-user';
+      // For demo purposes, we'll use a fixed UUID for anonymous user
+      const anonymousUserId = '00000000-0000-0000-0000-000000000000';
       setUserId(anonymousUserId);
       
       // Check if user exists, if not create them
