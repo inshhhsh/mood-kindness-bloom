@@ -3,7 +3,7 @@ import { MoodSelector } from '@/components/MoodSelector';
 import { TaskList } from '@/components/TaskList';
 import { ReflectionForm } from '@/components/ReflectionForm';
 import { ProgressPage } from '@/components/ProgressPage';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import { DarkModeToggle } from '@/components/DarkModeToggle';
 import { useKindnessApp, Mood } from '@/hooks/useKindnessApp';
 import { useAuth } from '@/hooks/useAuth';
 import AuthPage from './AuthPage';
@@ -102,8 +102,7 @@ export default function KindnessApp() {
   // Add controls to mood selector
   const MoodSelectorWithControls = () => (
     <div className="relative">
-      <div className="absolute top-4 right-4 z-10 flex gap-2">
-        <ThemeSwitcher />
+      <div className="absolute top-4 right-4 z-10">
         <Button
           variant="ghost"
           onClick={signOut}
@@ -164,5 +163,10 @@ export default function KindnessApp() {
     }
   };
 
-  return <div className="kindness-app">{renderCurrentPage()}</div>;
+  return (
+    <div className="kindness-app">
+      {renderCurrentPage()}
+      <DarkModeToggle />
+    </div>
+  );
 }
