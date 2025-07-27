@@ -64,8 +64,8 @@ def generate_quote(request: TaskRequest):
             words = cleaned.split()
             quote = ' '.join(words[:10])
 
-            return {"quote": quote}
-    return {"quote": result}
+    return {"quote": quote}
+
 
 
 
