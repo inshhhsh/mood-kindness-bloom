@@ -3,7 +3,7 @@ _A self-care app for the age of burnout & over productivity_
 
 ## Installation Guide:
 
-#### 1: Clone the repository using the project's Git URL.
+#### Step 1: Clone the repository using the project's Git URL.
 ```
 git clone 
 ```
