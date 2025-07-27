@@ -119,9 +119,8 @@ export function useKindnessApp(user: User | null) {
       setUserPoints((prev) => prev + 1);
       setCurrentTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
 
-      // Fetch funny quote from Python FastAPI
       const funnyQuote = taskText ? await generateQuote(taskText) : null;
-      return funnyQuote; // RETURN THE QUOTE
+      return funnyQuote;
     } catch (error) {
       console.error('Error completing task:', error);
       return null;

@@ -11,7 +11,7 @@ interface TaskListProps {
   userPoints: number;
   selectedMood: Mood;
   isLoading: boolean;
-  onCompleteTask: (taskId: string) => (taskId: string, taskText: string) => Promise<string>;
+  onCompleteTask: (taskId: string, taskText: string) => Promise<string | null>;
   onSkipTask: () => void;
   onBack: () => void;
   onReflection: (taskId: string) => void;
@@ -31,11 +31,15 @@ export function TaskList({
                          }: TaskListProps) {
   const [completedTaskId, setCompletedTaskId] = useState<string | null>(null);
   const [quote, setQuote] = useState<string | null>(null);
-  const { toast } = useToast();  // <--- Get toast here
+  const { toast } = useToast();
+  const [isWaiting, setIsWaiting] = useState(false);
+  const [showCongratsModal, setShowCongratsModal] = useState(false);
+
 
   async function handleCompleteTask(taskId: string, taskText: string) {
-    // Get the AI quote when task is completed:
+    setIsWaiting(true);
     const quote = await onCompleteTask(taskId, taskText);
+    setIsWaiting(false);
 
     if (quote === null) {
       toast({
@@ -48,15 +52,14 @@ export function TaskList({
 
     setCompletedTaskId(taskId);
     setQuote(quote);
+    setShowCongratsModal(true);
 
     toast({
-      title: "Congrats!",
-      description: "You earned one point! 💛",
+      title: "🎉 Congrats! You earned one point! ",
+      description: "Thanks for spreading kindness! 💛",
       variant: "default",
     });
   }
-
-
 
   if (isLoading) {
     return (
@@ -161,6 +164,29 @@ export function TaskList({
                 </p>
               </div>
           )}
+
+          {isWaiting && (
+              <div className="fixed inset-0 bg-gradient-to-br from-background to-accent/20 flex items-center justify-center z-50 p-4">
+                <div className="w-full max-w-lg">
+                  <div className="kindness-card pixel-window-theme">
+                    <div className="pixel-window-titlebar flex items-center justify-center">
+                      <div className="pixel-text-body text-window-active">💡 KINDNESS BOT</div>
+                    </div>
+                    <div className="pixel-window-content flex flex-col items-center p-8">
+                      <div className="text-5xl mb-4">🤖</div>
+                      <div className="pixel-text-title text-lg mb-3">Kindness Bot is thinking...</div>
+                      <div className="my-3">
+                        <div className="animate-spin border-4 border-accent border-t-transparent rounded-full w-12 h-12 mx-auto" />
+                      </div>
+                      <div className="pixel-text-body text-muted-foreground text-sm mt-4">
+                        Please wait while we generate your personalized quote.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          )}
+
 
           {/* AI Quote Popup */}
           {quote && (

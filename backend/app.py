@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import random
 from transformers import pipeline
 from fastapi.middleware.cors import CORSMiddleware
+import re
 
 app = FastAPI()
 
@@ -37,7 +38,7 @@ def generate_quote(request: TaskRequest):
     prompt = random.choice(PROMPT_TEMPLATES).format(task=request.task)
     results = generator(
         prompt,
-        max_length=50,
+        max_length=40,
         num_return_sequences=1,
         do_sample=True,
         temperature=0.9,
@@ -47,9 +48,16 @@ def generate_quote(request: TaskRequest):
         generated_only = full_text[len(prompt):].strip()
     else:
         generated_only = full_text
-    words = generated_only.split()
-    limited_words = words[:30]
-    quote = ' '.join(limited_words)
+
+    cleaned = generated_only.replace('\n', ' ').strip()
+
+    match = re.search(r'^(.*?[.!?])(\s|$)', cleaned)
+    if match:
+        quote = match.group(1).strip()
+    else:
+        words = cleaned.split()
+        quote = ' '.join(words[:10])
+
     return {"quote": quote}
 
 
