@@ -3,25 +3,34 @@ _A self-care app for the age of burnout & over productivity_
 
 ## Installation Guide:
 
-### 1: Clone the repository using the project's Git URL.
+#### 1: Clone the repository using the project's Git URL.
 ```
 git clone 
 ```
-### Step 2: Navigate to the project directory.
+#### Step 2: Navigate to the project directory.
 ```
 cd mood-kindness-bloom
 ```
 
-### Step 3: Install the necessary dependencies.
+#### Step 3: Install the necessary dependencies.
 First terminal:
+```
+npm install
+```
+```
+pip install fastapi uvicorn
+```
+```
+transformers torch
+```
+```
+cd backend
+```
+```
+uvicorn app:app -- reload
+```
 
-    npm install
-    pip install fastapi uvicorn
-    transformers torch
-    cd backend
-    uvicorn app:app -- reload
-
-### Step 4: Start the development server with auto-reloading and an instant preview.
+#### Step 4: Start the development server with auto-reloading and an instant preview.
 Second terminal:
   ```
   npm run dev
