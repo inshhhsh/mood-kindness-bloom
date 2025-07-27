@@ -1,50 +1,33 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import random
-import os
 from transformers import pipeline
-from supabase import create_client, Client
-
-supabase: Client = create_client(
-    os.getenv("SUPABASE_URL"),
-    os.getenv("SUPABASE_KEY")
-)
-
-def ensure_prompt_column_exists():
-    """Checks and adds the prompt column if missing"""
-    try:
-        supabase.table('kindness_tasks').select("prompt").limit(1).execute()
-    except Exception as e:
-        if 'column "prompt" does not exist' in str(e):
-            supabase.rpc('add_prompt_column').execute()
-            print("Added prompt column to table")
-        else:
-            raise e
-
-def create_column_addition_function():
-    """Creates the SQL function we'll call later"""
-    supabase.rpc('create_or_replace_function', {
-        'function_name': 'add_prompt_column',
-        'function_definition': """
-        BEGIN
-            EXECUTE 'ALTER TABLE kindness_tasks ADD COLUMN IF NOT EXISTS prompt TEXT';
-            RETURN TRUE;
-        END;
-        """
-    }).execute()
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-PROMPT_TEMPLATES = [
-    "Write a short funny quote about: {task}.",
-    "Give me a funny quote on: {task}.",
-    "Create an uplifting quote related to: {task}.",
-    "Create a funny prompt for this kindness task: {task}.",
-    "Make a brief, funny quote about: {task}."
-]
+app.add_middleware(
+    CORSMiddleware,
+   allow_origins=[
+           "http://localhost:3000",
+           "http://localhost:8080",
+           "http://127.0.0.1:8080",
+       ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 generator = pipeline('text-generation', model='EleutherAI/gpt-neo-125M')
+
+PROMPT_TEMPLATES = [
+    "Only output a funny 5–10 word quote about: {task}. No extra words.",
+    "Brief: In exactly 5–10 words, give a positive quote about: {task}.",
+    "What is one uplifting sentence (5–10 words) about: {task}?",
+    "Give only the funny quote, max 10 words, about: {task}.",
+    "Generate exactly 8 words in a positive quote about: {task}."
+]
+
 
 class TaskRequest(BaseModel):
     task: str
@@ -52,22 +35,21 @@ class TaskRequest(BaseModel):
 @app.post("/generate-quote")
 def generate_quote(request: TaskRequest):
     prompt = random.choice(PROMPT_TEMPLATES).format(task=request.task)
-    results = generator(prompt, max_length=50, num_return_sequences=1, do_sample=True, temperature=0.9)
-    quote = results[0]['generated_text'].strip()
+    results = generator(
+        prompt,
+        max_length=50,
+        num_return_sequences=1,
+        do_sample=True,
+        temperature=0.9,
+    )
+    full_text = results[0]['generated_text'].strip()
+    if full_text.startswith(prompt):
+        generated_only = full_text[len(prompt):].strip()
+    else:
+        generated_only = full_text
+    words = generated_only.split()
+    limited_words = words[:30]
+    quote = ' '.join(limited_words)
     return {"quote": quote}
 
-@app.post("/generate-tasks")
-async def generate_tasks(mood: str):
-    tasks = get_tasks_from_db(mood)
-    return {
-        "tasks": [{
-            "id": task.id,
-            "task_text": task.task_text,
-            "prompt": task.prompt or None,
-            "category": task.category,
-            "mood_tag": task.mood_tag
-        } for task in tasks]
-    }
 
-create_column_addition_function()
-ensure_prompt_column_exists()

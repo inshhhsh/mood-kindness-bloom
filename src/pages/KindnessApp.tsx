@@ -38,13 +38,12 @@ export default function KindnessApp() {
     setCurrentPage('tasks');
   };
 
-  const handleCompleteTask = async (taskId: string) => {
-    const success = await completeTask(taskId);
-    if (success) {
-      setCurrentTaskId(taskId);
-    }
-    return success;
+  const handleCompleteTask = async (taskId: string, taskText: string) => {
+    const quote = await completeTask(taskId, taskText);
+    if (quote) setCurrentTaskId(taskId);
+    return quote;
   };
+
 
   const handleReflection = (taskId: string) => {
     setCurrentTaskId(taskId);

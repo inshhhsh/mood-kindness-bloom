@@ -81,6 +81,7 @@ export function useKindnessApp(user: User | null) {
         category: 'self',
         mood_tag: mood
       })));
+
     } catch (error) {
       console.error('Task processing failed:', error);
       toast({
@@ -103,36 +104,30 @@ export function useKindnessApp(user: User | null) {
     return fallbacks[mood][Math.floor(Math.random() * fallbacks[mood].length)];
   }
 
-  const completeTask = async (taskId: string) => {
-    if (!user) return false;
-    
+  // Change the return type to: Promise<string | null>
+  const completeTask = async (taskId: string, taskText: string): Promise<string | null> => {
+    if (!user) return null;
+
     try {
-      // Add point to user
       const { error: updateError } = await supabase
-        .from('users')
-        .update({ points: userPoints + 1 })
-        .eq('user_id', user.id);
+          .from('users')
+          .update({ points: userPoints + 1 })
+          .eq('user_id', user.id);
 
       if (updateError) throw updateError;
 
-      setUserPoints(prev => prev + 1);
-      
-      toast({
-        title: "🎉 You earned 1 Kindness Point!",
-        description: "Thank you for spreading kindness!",
-      });
+      setUserPoints((prev) => prev + 1);
+      setCurrentTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
 
-      return true;
+      // Fetch funny quote from Python FastAPI
+      const funnyQuote = taskText ? await generateQuote(taskText) : null;
+      return funnyQuote; // RETURN THE QUOTE
     } catch (error) {
       console.error('Error completing task:', error);
-      toast({
-        title: "Error",
-        description: "Failed to complete task",
-        variant: "destructive"
-      });
-      return false;
+      return null;
     }
   };
+
 
   const saveReflection = async (taskId: string, feedback: string) => {
     if (!user) return false;
@@ -185,6 +180,23 @@ export function useKindnessApp(user: User | null) {
   };
 
 
+  const generateQuote = async (taskText: string): Promise<string | null> => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/generate-quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ task: taskText }),
+      });
+
+      if (!response.ok) throw new Error("Failed to generate quote");
+
+      const data = await response.json();
+      return data.quote;
+    } catch (error) {
+      console.error("Error generating quote:", error);
+      return null;
+    }
+  };
 
 
 
