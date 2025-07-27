@@ -1,27 +1,34 @@
-# Kindness AI
+# Kindness AI ✨🩷
 _A self-care app for the age of burnout & over productivity_
 
-## Installation Guide:
+## Installation Guide ⌨️:
 
-### 1: Clone the repository using the project's Git URL.
-git clone 
+### Step 1: Clone the repository using the project's Git URL.
+```bash
+git clone https://github.com/inshhhsh/mood-kindness-bloom
+```
 
 ### Step 2: Navigate to the project directory.
+```bash
 cd mood-kindness-bloom
+```
 
 ### Step 3: Install the necessary dependencies.
 <span style="font-family: 'Arial'; font-size: 20px;">First terminal:</span>  
-  ``npm install``
-  ``pip install fastapi uvicorn``
-  ``transformers torch``
-  ``cd backend``
-  ``uvicorn app:app -- reload``
+  ```bash
+  npm install
+  pip install fastapi uvicorn transformers torch
+  cd backend
+  uvicorn app:app --reload
+```
 
 ### Step 4: Start the development server with auto-reloading and an instant preview.
 Second terminal:
-  ``npm run dev``
+  ```bash 
+  npm run dev
+```
 
-## Overview:
+## Overview 🤲:
 
 In a world obsessed with encouraging our generations for maximum productivity, we're taught to optimize every second—track our productive actions, measure our output, hustle harder. 
 Every app, every wearable, every planner seems to ask: _“how can you do more? Are you doing more than enough?”_. But somewhere along the way, a simple question disappeared: _“how are you doing? Are you okay doing all this?”_ **While being encouraged to make sure every second of our lives is used to work for a better future, we often forget in caring for our present selves…**.
@@ -47,11 +54,12 @@ It doesn't just track behavior -— **_it validates being alive_**. That’s wha
 
 _We hope that with this app, everyone will gift themselves the time to nurture their souls –  **guiltfree**._
 
-## TechStack: 
+## TechStack 💻: 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
 - Lovable for AI - Assited coding
-- AI Integration: OpenAI GPT-4o for personalized affirmations, emotional reflections, and journaling prompts
+- Python
+- HuggingFace OpenAI
