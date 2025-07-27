@@ -14,17 +14,21 @@ cd mood-kindness-bloom
 
 ### Step 3: Install the necessary dependencies.
 First terminal:
-  ```bash
-  npm install
-  pip install fastapi uvicorn
-  transformers torch
-  cd backend
-  uvicorn app:app -- reload
 ```
+  npm install
+```
+```
+  pip install fastapi uvicorn
+```
+    transformers torch
+    cd backend
+    uvicorn app:app -- reload
 
 ### Step 4: Start the development server with auto-reloading and an instant preview.
 Second terminal:
-  ```npm run dev```
+  ```
+  npm run dev
+  ```
 
 ## Overview:
 
