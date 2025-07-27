@@ -1,28 +1,27 @@
-##Kindness AI
+**#Kindness AI**
 _A self-care app for the age of burnout & over productivity_
 
-#**Installation Guide**:
+## **Installation Guide**:
 
-# 1: Clone the repository using the project's Git URL.
+### 1: Clone the repository using the project's Git URL.
 git clone 
 
-# Step 2: Navigate to the project directory.
+### Step 2: Navigate to the project directory.
 cd mood-kindness-bloom
 
-# Step 3: Install the necessary dependencies.
-<span style="font-family: 'Arial'; font-size: 20px;">First terminal:</span>  
-npm install
-pip install fastapi uvicorn
-transformers torch
-cd backend
-uvicorn app:app -- reload
+### Step 3: Install the necessary dependencies.
+First terminal:
+  npm install
+  pip install fastapi uvicorn
+  transformers torch
+  cd backend
+  uvicorn app:app -- reload
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-<span style="font-family: 'Arial'; font-size: 20px;">Second terminal:</span>
-npm run dev
+#Step 4: Start the development server with auto-reloading and an instant preview.
+Second terminal:
+  npm run dev
 
-**#Overview:**
-
+**## Overview:**
 In a world obsessed with encouraging our generations for maximum productivity, we're taught to optimize every second—track our productive actions, measure our output, hustle harder. 
 Every app, every wearable, every planner seems to ask: _“how can you do more? Are you doing more than enough?”_. But somewhere along the way, a simple question disappeared: _“how are you doing? Are you okay doing all this?”_ While being encouraged to make sure every second of our lives is used to work for a better future, we often forget in caring for our present selves….
 
@@ -35,7 +34,7 @@ Each time you complete a task, you earn points and grow your in-game character�
 The growing mental health crisis, productivity fatigue, and the quiet epidemic of burnout was the inspiration behind all this. We wanted to design a space that values stillness, rest, and gentleness – a digital friend that validates the things no to-do list would typically include. 
 It’s weird in the most tender, and human way: playful collector cards, affirmations from emotional AI, reflections from the affirmations, journey of self care.
 
-It's especially meaningful for:
+**It's especially meaningful for:**
 - Neurodivergent users who need gentler ways to manage daily life
 - Burned-out students and professionals
 - Anyone healing from mental health struggles
@@ -47,7 +46,7 @@ Kindness AI is a counter to toxic productivity.
 
 _We hope that with this app, everyone will gift themselves the time to nurture their souls –  **guiltfree**._
 
-#**TechStack: **
+**##TechStack: **
 - Vite
 - TypeScript
 - React
